@@ -56,8 +56,10 @@ class _MyHomePageState extends State<MyHomePage> {
   // Selected File in Bytes
   Uint8List? fileInBytes;
 
+  // NO NEED since nag pdfview network tayo
+  //
   // Placeholder for the uploaded file from storage
-  Uint8List? uploadedImage;
+  // Uint8List? uploadedImage;
 
   // Loading State when uploading file
   bool isLoading = false;
@@ -79,21 +81,23 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
+  // NO NEED since nag pdfview network tayo
+  //
   // Function to get the pdf from a firebase storage download url
-  void getPdfBytes(String url) async {
-    if (kIsWeb) {
-      // Create a reference to the file
-      Reference pdfRef = FirebaseStorage.instanceFor().refFromURL(url);
-      debugPrint("pdfRef: $pdfRef");
-      await pdfRef.getData().then((value) {
-        // Set the uploaded image to the value returned from getData
-        uploadedImage = value;
+  // void getPdfBytes(String url) async {
+  //   if (kIsWeb) {
+  //     // Create a reference to the file
+  //     Reference pdfRef = FirebaseStorage.instanceFor().refFromURL(url);
+  //     debugPrint("pdfRef: $pdfRef");
+  //     await pdfRef.getData().then((value) {
+  //       // Set the uploaded image to the value returned from getData
+  //       uploadedImage = value;
 
-        // Update the UI
-        setState(() {});
-      });
-    }
-  }
+  //       // Update the UI
+  //       setState(() {});
+  //     });
+  //   }
+  // }
 
   // Function to upload a file to Firebase Storage and save the URL to Firestore
   Future<void> uploadFileAndSaveUrl(Uint8List fileData, String fileName) async {
@@ -129,9 +133,6 @@ class _MyHomePageState extends State<MyHomePage> {
       'fileName': fileName,
       'fileUrl': fileUrl,
     });
-
-    // Get the PDF bytes from the URL
-    getPdfBytes(fileUrl);
 
     // Set the loading state to false
     setState(() {
